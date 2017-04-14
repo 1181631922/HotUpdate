@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.fanyafeng.hotupdate.R;
 import com.fanyafeng.hotupdate.BaseActivity;
+import com.meituan.android.walle.WalleChannelReader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,12 +42,13 @@ public class MainActivity extends BaseActivity {
     //初始化UI控件
     private void initView() {
         tvMain = (TextView) findViewById(R.id.tvMain);
-        tvMain.setText("测试----------------");
+        String channel = WalleChannelReader.getChannel(getApplicationContext());
+        tvMain.setText(channel);
         tvMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, WebActivity.class);
-                intent.putExtra("url","https://www.baidu.com");
+                intent.putExtra("url", "https://www.baidu.com");
                 startActivity(intent);
             }
         });
